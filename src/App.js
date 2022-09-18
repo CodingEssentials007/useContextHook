@@ -1,26 +1,21 @@
 import './App.css';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import {BrowserRouter as BR, Routes,Route,Link} from 'react-router-dom';
+import Home from './Component/Home';
+import Aboutus from './Component/Aboutus';
+import CustomNav from './Component/CustomNav';
 
 function App() {
     
-    const [img,setImg]=useState('');
-   
-    const handleCall=()=>
-    {
-        axios.get("https://dog.ceo/api/breeds/image/random")
-        .then((res)=>(setImg(res.data.message)))
-    }
-    useEffect(()=>{
-    axios.get("https://dog.ceo/api/breeds/image/random")
-    .then((res)=>(setImg(res.data.message)))
-    },[])
-
-   
     return ( 
         <div >
-           <img  src={img}  style={{width:'20vw', height:'40vh'}}  />
-            <button onClick={handleCall}>click</button>      
+            <BR>
+              <CustomNav />
+                <Routes>
+                        <Route path='/' element={<Home />}  />
+                        <Route path='/aboutus' element={<Aboutus />}  />
+                </Routes>
+            </BR>
+           
         </div>
      );
 }
