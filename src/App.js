@@ -1,22 +1,21 @@
+import { useState, createContext } from 'react';
 import './App.css';
-import {BrowserRouter as BR, Routes,Route,Link} from 'react-router-dom';
-import Home from './Component/Home';
-import Aboutus from './Component/Aboutus';
-import CustomNav from './Component/CustomNav';
+import FirstLevel from './Component/FirstLevel';
+
+
+export const AppContext=createContext();
 
 function App() {
+    const [name,setName]=useState('Ahsen');
     
-    return ( 
-        <div >
-            <BR>
-              <CustomNav />
-                <Routes>
-                        <Route path='/' element={<Home />}  />
-                        <Route path='/aboutus' element={<Aboutus />}  />
-                </Routes>
-            </BR>
-           
+    return (
+        <AppContext.Provider value={{name, setName}}>           
+        <div>
+            
+               <FirstLevel  />
+ 
         </div>
+        </AppContext.Provider>
      );
 }
 
